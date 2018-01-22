@@ -8,7 +8,14 @@ from django.http import HttpResponse
 
 class AlertGateway(View):
     def post(self, request):
+        print(request)
         print(request.POST)
         print(request.POST.get('version', "empty"))
         print(request.POST.get('alerts', "empty"))
+        return HttpResponse(request)
+    def get(self, request):
+        print(request)
+        print(request.GET)
+        print(request.GET.get('version', "empty"))
+        print(request.GET.get('alerts', "empty"))
         return HttpResponse(request)
