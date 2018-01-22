@@ -8,5 +8,5 @@ from django.shortcuts import render
 
 class AlertGateway(View):
     def post(self, request):
-        print(request.POST['version'])
-        print(request.POST['alerts'])
+        print(request.POST.get('version', "empty"))
+        print(request.POST.get('alerts', "empty"))
