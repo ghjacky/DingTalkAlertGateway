@@ -39,7 +39,6 @@ class AlertGateway(View):
             message.update({
                 "alertName": event["labels"]["alertname"],
                 "instance": event["labels"]["instance"],
-                "node": event["labels"]["node"],
                 "job": event["labels"]["job"],
                 "service": event["labels"]["service"],
                 "env": event["labels"]["env"],
