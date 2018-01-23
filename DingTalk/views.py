@@ -30,7 +30,6 @@ class AlertGateway(View):
 
         for event in data['alerts']:
             if "sba" != data.get("source", ""):
-                global message
                 message.update({
                     "generatorURL": event["generatorURL"],
                     "severity": event["labels"]["severity"],
