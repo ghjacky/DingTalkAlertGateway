@@ -26,8 +26,7 @@ class AlertGateway(View):
         DingPayload = dict()
         headers = {"Content-Type": "application/json; charset=utf-8"}
         WebHook = "https://oapi.dingtalk.com/robot/send?access_token=86a49cbe1761ca0d9267892412384242a26938ee3cb1cd0ebc548abf791935a6"
-        print("[v1/api/DingTalk:] {0}".format(data))
-
+        print("[v1/api/DingTalk:] data -- {0}".format(data))
         for event in data['alerts']:
             if "sba" != data.get("source", ""):
                 message.update({
@@ -35,7 +34,6 @@ class AlertGateway(View):
                     "severity": event["labels"]["severity"],
                 })
 
-            print(message)
             message.update({
                 "alertName": event["labels"]["alertname"],
                 "instance": event["labels"]["instance"],
@@ -48,6 +46,7 @@ class AlertGateway(View):
                 "description": event["annotations"]["description"],
 
             })
+            print("[v1/api/DingTalk:] message -- {0}".format(message))
             title = message.get("alertName", "告警")
             status = type[message.get("status", "firing")]
             content = message.get("description", "Unkown！")
