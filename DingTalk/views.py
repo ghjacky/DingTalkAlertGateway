@@ -4,7 +4,6 @@ from django.views import View
 from django.http import HttpResponse
 import json
 import requests
-import datetime
 # Create your views here.
 
 
@@ -28,13 +27,15 @@ class AlertGateway(View):
         WebHook = "https://oapi.dingtalk.com/robot/send?access_token=86a49cbe1761ca0d9267892412384242a26938ee3cb1cd0ebc548abf791935a6"
         print("[v1/api/DingTalk:] data -- {0}".format(data))
         for event in data['alerts']:
-            if "sba" != data.get("source", ""):
-                message.update({
-                    "generatorURL": event["generatorURL"],
-                    "severity": event["labels"]["severity"],
-                })
+            # if "sba" != data.get("source", ""):
+            #     message.update({
+            #         "generatorURL": event["generatorURL"],
+            #         "severity": event["labels"]["severity"],
+            #     })
 
             message.update({
+                "generatorURL": event["generatorURL"],
+                "severity": event["labels"]["severity"],
                 "alertName": event["labels"]["alertname"],
                 "instance": event["labels"]["instance"],
                 "job": event["labels"]["job"],
